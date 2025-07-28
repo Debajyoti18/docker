@@ -70,3 +70,29 @@ echo "Key File: $KEY_NAME.pem"
 echo "================================"
 
 
+sudo docker build -t debajyotidj1/java-app:latest .
+sudo docker images
+sudo docker push debajyotidj1/java-app:latest
+
+
+FROM openjdk:17             # Start with a Java 17 image
+WORKDIR /app                # Set working directory inside the container
+COPY . .                    # Copy all files from current dir into /app
+RUN javac Hello.java        # Compile the Java file
+CMD ["java", "Hello"]       # Run the compiled program
+
+
+sudo docker build -t debajyotidj1/java-app:latest .
+sudo docker images
+sudo docker push debajyotidj1/java-app:latest
+
+
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker login
+sudo docker pull debajyotidj1/java-app:latest
+sudo docker run debajyotidj1/java-app:latest
+
+
